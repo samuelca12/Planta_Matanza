@@ -1,6 +1,9 @@
 // Original source code: https://wiki.keyestudio.com/KS0429_keyestudio_TDS_Meter_V1.0#Test_Code
 // Project details: https://RandomNerdTutorials.com/arduino-tds-water-quality-sensor/
 
+// --------------------------------------------------------------------------------------------------------
+// FUENTE DEL TUTORIAL: https://randomnerdtutorials.com/arduino-tds-water-quality-sensor/
+//--------------------------------------------------------------------------------------------------------------
 #define TdsSensorPin A0
 #define VREF 5.0              // analog reference voltage(Volt) of the ADC
 #define SCOUNT  30            // sum of sample point
