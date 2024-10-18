@@ -166,8 +166,23 @@ void loop() {
     previousMillis = currentMillis;
     double litersPerMinute = (pulseCount / 450.0) * 60.0;
     pulseCount = 0;
-    
-    // Alternar entre mostrar ORP+pH, Agua+Flujo, TDS
+
+    // Mostrar valores en el Serial Plotter
+    Serial.print("ORP:");  // Etiqueta opcional para el plotter
+    Serial.print(orpValue);
+    Serial.print(" pH:");  
+    Serial.print(phValue, 2);
+    Serial.print(" Total_Agua:");  
+    Serial.print(waterFlow, 2);  // Total de agua acumulada
+    Serial.print(" L/min:");  
+    Serial.print(litersPerMinute, 2);
+    Serial.print(" TDS:");  
+    Serial.println(tdsValue, 0);  // Imprimir los valores para el plotter
+
+    // Actualizar el flujo total de agua
+    waterFlow += (litersPerMinute / 60);  // Sumar el flujo al total
+
+    // Alternar entre mostrar ORP+pH, Agua+Flujo, TDS en la pantalla LCD
     if (millis() - displayMillis > 5000) {  // Cambiar cada 5 segundos
       displayMillis = millis();
       displayState = (displayState + 1) % 3;
@@ -209,5 +224,4 @@ void loop() {
 // Incrementar el contador de pulsos y sumar al flujo total
 void pulse() {
   pulseCount++;
-  waterFlow += 1.0 / 450.0;
 }
